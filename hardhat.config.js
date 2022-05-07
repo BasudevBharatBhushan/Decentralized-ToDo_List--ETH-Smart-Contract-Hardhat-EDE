@@ -1,6 +1,6 @@
 require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-waffle");
-
+let secret =require("./secret")
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
 
@@ -27,8 +27,9 @@ module.exports = {
     artifacts: './src/artifacts',
   },
   networks: {
-    hardhat: {
-      chainId: 1337,
+    ropsten: {   //npx hardhat run scripts/deploy.js --network ropsten
+      url: secret.url,
+      accounts:[secret.key]
     },
   }
 };
